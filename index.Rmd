@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = FALSE)
 dt = read.csv('sample.csv')
 ```
 
+## About
+
+This is about an R app hosted on [Shiny](https://bbbush.shinyapps.io/dss-devdataprod-20160620/), which presents a few data points collected in calculating an account.
+
 ## What is an account
 When people trade stocks, an account is used to bookkeeping. An account in code is also used to represent any mixture of securities, get included in another account. The result is a recursive structure.
 
