@@ -24,7 +24,8 @@ shinyUI(fluidPage(
         "total_time is not as large (less than 5s), the model fit is rather bad.",
         "But it is as much concern as the slow ones."),
       p("For the same id, total_time varied a lot, so there is missing dep,",
-        "maybe during some hours of a day there is a long queue.")
+        "maybe during some hours of a day there is a long queue."),
+      p(a("Source code", href="https://github.com/bbbush/dss-devdataprod-20160620"))
     ),
     mainPanel(
       fluidRow(
