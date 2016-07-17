@@ -1,0 +1,69 @@
+---
+title: "Regression on performance counter data"
+author: "Blue Yijun Yuan"
+date: "July 17, 2016"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+dt = read.csv('sample.csv')
+```
+
+## What is an account
+When people trade stocks, an account is used to bookkeeping. An account in code is also used to represent any mixture of securities, get included in another account. The result is a recursive structure.
+
+## Data introduction
+```{r table, echo=F}
+head(dt, 1)
+```
+- layer: 1 for top layer, increase 1 for each sub layers
+- total_time: collected by performance counter
+- sub_sec_cnt: how many securities held (non-account only)
+- sub_acc_cnt: how many account held
+- dep: also collected by performance counter
+- MERGE: also collected by performance counter
+
+## Data introduction (cont.)
+
+The total_time is roughly equal to dep, as MERGE is usually fast. Another part of slowness comes from handling securities and accounts in sub layers, which cannot be measured effectively, but should have something to do with the number of holdings.
+
+## Slow cases
+
+For slow ones (more than 10s), they are mostly caused by dep alone
+```{r slow, echo=F, warning=F}
+l = levels(factor(dt$layer))
+with(dt[dt$total_time > 10000,],
+     {
+       plot(total_time ~ dep,
+            col=layer,
+            main="Slowest cases")
+       legend("bottomright", pch=1, legend=l, col=l, title="layers")
+     })
+```
+
+## Slow cases (one account)
+
+That is not true for an account that has been repeatedly tested
+```{r singleSlow, echo=F, warning=F}
+with(dt[dt$total_time > 5000 &
+          dt$id == 633,],
+     {
+       plot(total_time + dep, total_time - dep,
+            main="Slowest cases for one account")
+     })
+```
+
+
+## Fast cases (one account)
+
+That is not true when looking at fast cases either
+```{r singleNonSlow, echo=F, warning=F}
+with(dt[dt$total_time < 5000 &
+          dt$id == 633,],
+     {
+       plot(total_time ~ dep,
+            main="Fast cases")
+     })
+```
+
