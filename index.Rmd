@@ -2,6 +2,12 @@
 title: "Regression on performance counter data"
 author: "Blue Yijun Yuan"
 date: "July 17, 2016"
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
 ---
 
 ```{r setup, include=FALSE}
@@ -13,10 +19,16 @@ dt = read.csv('sample.csv')
 
 This is about an R app hosted on [Shiny](https://bbbush.shinyapps.io/dss-devdataprod-20160620/), which presents a few data points collected in calculating an account.
 
+---
+
 ## What is an account
+
 When people trade stocks, an account is used to bookkeeping. An account in code is also used to represent any mixture of securities, get included in another account. The result is a recursive structure.
 
+---
+
 ## Data introduction
+
 ```{r table, echo=F}
 head(dt, 1)
 ```
@@ -27,9 +39,13 @@ head(dt, 1)
 - dep: also collected by performance counter
 - MERGE: also collected by performance counter
 
+---
+
 ## Data introduction (cont.)
 
 The total_time is roughly equal to dep, as MERGE is usually fast. Another part of slowness comes from handling securities and accounts in sub layers, which cannot be measured effectively, but should have something to do with the number of holdings.
+
+---
 
 ## Slow cases
 
@@ -45,6 +61,8 @@ with(dt[dt$total_time > 10000,],
      })
 ```
 
+---
+
 ## Slow cases (one account)
 
 That is not true for an account that has been repeatedly tested
@@ -57,6 +75,8 @@ with(dt[dt$total_time > 5000 &
      })
 ```
 
+
+---
 
 ## Fast cases (one account)
 
