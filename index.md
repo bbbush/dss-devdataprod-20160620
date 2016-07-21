@@ -11,6 +11,7 @@ knit        : slidify::knit2slides
 ---
 
 
+
 ## About
 
 This is about an R app hosted on [Shiny](https://bbbush.shinyapps.io/dss-devdataprod-20160620/), which presents a few data points collected in calculating an account.
@@ -48,14 +49,14 @@ The total_time is roughly equal to dep, as MERGE is usually fast. Another part o
 ## Slow cases
 
 For slow ones (more than 10s), they are mostly caused by dep alone
-![plot of chunk slow](assets/fig/slow-1.png)
+![plot of chunk slow](figure/slow-1.png)
 
 ---
 
 ## Slow cases (one account)
 
 That is not true for an account that has been repeatedly tested
-![plot of chunk singleSlow](assets/fig/singleSlow-1.png)
+![plot of chunk singleSlow](figure/singleSlow-1.png)
 
 
 ---
@@ -63,5 +64,6 @@ That is not true for an account that has been repeatedly tested
 ## Fast cases (one account)
 
 That is not true when looking at fast cases either
-![plot of chunk singleNonSlow](assets/fig/singleNonSlow-1.png)
+
+![plot of chunk singleNonSlow](figure/singleNonSlow-1.png)
 

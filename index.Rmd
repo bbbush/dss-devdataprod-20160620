@@ -81,6 +81,7 @@ with(dt[dt$total_time > 5000 &
 ## Fast cases (one account)
 
 That is not true when looking at fast cases either
+
 ```{r singleNonSlow, echo=F, warning=F}
 with(dt[dt$total_time < 5000 &
           dt$id == 633,],
