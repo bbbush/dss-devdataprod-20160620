@@ -4,10 +4,7 @@ author: "Blue Yijun Yuan"
 date: "July 17, 2016"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-dt = read.csv('sample.csv')
-```
+
 
 ## About
 
@@ -17,8 +14,10 @@ This is about an R app hosted on [Shiny](https://bbbush.shinyapps.io/dss-devdata
 When people trade stocks, an account is used to bookkeeping. An account in code is also used to represent any mixture of securities, get included in another account. The result is a recursive structure.
 
 ## Data introduction
-```{r table, echo=F}
-head(dt, 1)
+
+```
+##   layer  id total_time sub_sec_cnt sub_acc_cnt  dep MERGE
+## 1     1 633       3096          10           0 1852    12
 ```
 - layer: 1 for top layer, increase 1 for each sub layers
 - total_time: collected by performance counter
@@ -34,39 +33,16 @@ The total_time is roughly equal to dep, as MERGE is usually fast. Another part o
 ## Slow cases
 
 For slow ones (more than 10s), they are mostly caused by dep alone
-```{r slow, echo=F, warning=F}
-l = levels(factor(dt$layer))
-with(dt[dt$total_time > 10000,],
-     {
-       plot(total_time ~ dep,
-            col=layer,
-            main="Slowest cases")
-       legend("bottomright", pch=1, legend=l, col=l, title="layers")
-     })
-```
+![plot of chunk slow](assets/fig/slow-1.png)
 
 ## Slow cases (one account)
 
 That is not true for an account that has been repeatedly tested
-```{r singleSlow, echo=F, warning=F}
-with(dt[dt$total_time > 5000 &
-          dt$id == 633,],
-     {
-       plot(total_time + dep, total_time - dep,
-            main="Slowest cases for one account")
-     })
-```
+![plot of chunk singleSlow](assets/fig/singleSlow-1.png)
 
 
 ## Fast cases (one account)
 
 That is not true when looking at fast cases either
-```{r singleNonSlow, echo=F, warning=F}
-with(dt[dt$total_time < 5000 &
-          dt$id == 633,],
-     {
-       plot(total_time ~ dep,
-            main="Fast cases")
-     })
-```
+![plot of chunk singleNonSlow](assets/fig/singleNonSlow-1.png)
 
