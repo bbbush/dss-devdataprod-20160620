@@ -22,7 +22,7 @@ shinyUI(fluidPage(
         "(i.e. time spent on next layer of things.)"),
       p("This app shows how good a linear model could fit. When",
         "total_time is not as large (less than 5s), the model fit is rather bad.",
-        "But it is as much concern as the slow ones."),
+        "But it is not as much concern as the slow ones."),
       p("For the same id, total_time varied a lot, so there is missing dep,",
         "maybe during some hours of a day there is a long queue."),
       p(a("Source code", href="https://github.com/bbbush/dss-devdataprod-20160620"))
